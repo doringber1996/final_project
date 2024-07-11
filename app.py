@@ -106,6 +106,7 @@ st.markdown(
         color: white;
     }}
     .stButton button {{
+        background-color: black,
         color: white;
         border-radius: 12px;
     }}
