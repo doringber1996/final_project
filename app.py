@@ -2,7 +2,6 @@
 !pip install streamlit
 !pip install PyDrive
 !pip install pyngrok
-!ngrok authtoken 2j6OylfROdI5mAuULMAfIga4KDY_3KytxZPxf8xRsqa7twK5o
 !pip install Flask-Uploads
 !pip install Flask-Uploads pyngrok streamlit
 
