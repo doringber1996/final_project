@@ -107,7 +107,7 @@ st.markdown(
     }}
     .stButton button {{
         background-color: rgba(255, 255, 255, 0.8);
-        color: white;
+        color: black;
         border-radius: 12px;
     }}
     .stTextInput, .stNumberInput input {{
@@ -127,6 +127,12 @@ st.markdown(
         color: black !important;
         padding: 5px;
         border-radius: 5px;
+    }}
+    .css-10trblm, .css-1v3fvcr p {{
+        color: white !important;
+    }}
+    .stTitle, .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
+        color: white !important;
     }}
     </style>
     """,
