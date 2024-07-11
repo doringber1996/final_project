@@ -1,5 +1,4 @@
 import os
-import requests
 import joblib
 import pandas as pd
 import numpy as np
@@ -8,61 +7,12 @@ import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import altair as alt
 from urllib.parse import quote
-import tempfile
 
-# Create a temporary directory
-temp_dir = tempfile.mkdtemp()
-
-# Function to download files from GitHub
-def download_file_from_github(url, local_path):
-    response = requests.get(url)
-    if response.status_code == 200:
-        with open(local_path, 'wb') as f:
-            f.write(response.content)
-        st.write(f"Downloaded {url} to {local_path}")
-    else:
-        st.error(f"Failed to download {url}")
-
-# List of files to download
-files_to_download = [
-    'predictions_df.csv',
-    'best_en_model_Carciofi Alla Giodia.pkl',
-    "best_rf_model_חציל פרמז'ן.pkl",
-    'best_en_model_טליאטה די מנזו.pkl',
-    'best_en_model_כבדי עוף ובצל מטוגן.pkl',
-    'best_rf_model_לברק שלם.pkl',
-    'best_rf_model_לזניה בולונז.pkl',
-    'best_en_model_לינגוויני ארביאטה.pkl',
-    'best_rf_model_לינגוויני ירקות.pkl',
-    'best_hw_model_מאצי 4 גבינות.pkl',
-    'best_en_model_מאצי רוזה אפונה ובייקון.pkl',
-    'best_en_model_מבחר פטריות.pkl',
-    'best_en_model_סלט חסה גדול.pkl',
-    'best_rf_model_סלט קולורבי.pkl',
-    'best_rf_model_סלט קיסר.pkl',
-    'best_arima_model_עוגת גבינה.pkl',
-    'best_rf_model_פוקצ\'ת הבית.pkl',
-    'best_en_model_פטוצ\'יני תרד גורגונזולה.pkl',
-    'best_rf_model_פנה קרבונרה.pkl',
-    'best_xgb_model_פסטה בולונז.pkl',
-    'best_en_model_פפרדלה פטריות ושמנת.pkl',
-    "best_en_model_קרפצ'יו בקר אורוגולה ופרמז'ן.pkl",
-    "best_en_model_שרימפס אליו פפרונצ'ינו.pkl",
-    'best_en_model_טורטלוני.pkl',
-    'best_xgb_model_פילה דג.pkl',
-    'best_rf_model_פסטה פירות ים.pkl'
-]
-
-# GitHub base URL
-github_base_url = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
-
-# Download files to the temporary directory
-for file in files_to_download:
-    encoded_file = quote(file)
-    download_file_from_github(github_base_url + encoded_file, os.path.join(temp_dir, file))
+# Path to the folder containing the models
+models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv(os.path.join(temp_dir, 'predictions_df.csv'))
+predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
@@ -109,14 +59,16 @@ def load_model_and_predict(dish, input_data, model_type):
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
-    model_file = os.path.join(temp_dir, f'best_{model_type}_model_{dish}.pkl')
+    model_file = f'{models_path}best_{model_type}_model_{quote(dish)}.pkl'
     
-    # Check if the model file exists locally
-    if not os.path.isfile(model_file):
-        st.error(f"Model file not found: {model_file}")
+    # Download the model file from the given URL
+    try:
+        response = requests.get(model_file)
+        response.raise_for_status()  # Check if the request was successful
+        model = joblib.load(BytesIO(response.content))
+    except Exception as e:
+        st.error(f"Model file not found or error in loading: {model_file}, Error: {e}")
         return np.array([])
-
-    model = joblib.load(model_file)
 
     if model_type == 'arima':
         predictions = model.forecast(steps=len(input_data))
