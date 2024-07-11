@@ -110,6 +110,11 @@ st.markdown(
         color: black;
         border-radius: 12px;
     }}
+    .stDownload button {{
+        background-color: rgba(255, 255, 255, 0.8);
+        color: black;
+        border-radius: 12px;
+    }}
     .stTextInput, .stNumberInput input {{
         color: black;
     }}
@@ -180,6 +185,6 @@ if st.button("Predict"):
     st.altair_chart(chart)
 
     # Provide option to download results
-    st.subheader("Download Results")
+    st.markdown('<h2 class="title">Download Results</h2>', unsafe_allow_html=True)
     csv = predictions_df.to_csv(index=False)
     st.download_button(label="Download CSV", data=csv, file_name='predictions.csv', mime='text/csv')
