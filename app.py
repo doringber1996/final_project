@@ -162,8 +162,6 @@ if st.button("Predict"):
         predictions_data.append({"Dish": dish, "Prediction": prediction.sum()})
         
 
-    st.markdown(results_text, unsafe_allow_html=True)
-
     # Display results as a table
     st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
     predictions_df = pd.DataFrame(predictions_data)
