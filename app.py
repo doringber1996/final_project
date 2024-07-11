@@ -105,16 +105,7 @@ st.markdown(
         z-index: 1;
         color: white;
     }}
-    .main:before {{
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* שכבה כהה שקופה */
-        z-index: -1;
-    }}
+
     .stButton button {{
         background-color: #6a6b6b;
         color: white;
