@@ -5,5 +5,3 @@ scikit-learn
 joblib
 altair
 requests
-statsmodels
-xgboost
