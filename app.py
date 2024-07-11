@@ -116,7 +116,7 @@ st.markdown(
         z-index: -1;
     }}
     .stButton button {{
-        background-color: #4CAF50;
+        background-color: #6a6b6b;
         color: white;
         border-radius: 12px;
     }}
