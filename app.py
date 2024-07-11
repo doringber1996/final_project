@@ -10,11 +10,15 @@ from urllib.parse import quote
 from io import BytesIO
 import requests
 
-# Path to the folder containing the models
+# Path to the folder containing the models and images
 models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
 
 # Load the dataset containing model information
 predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
+
+# Load images from GitHub
+logo_url = f'{models_path}logo.png'
+restaurant_url = f'{models_path}restaurant.jpg'
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
@@ -92,24 +96,29 @@ def load_model_and_predict(dish, input_data, model_type):
     return predictions
 
 # Streamlit GUI
-st.title("Dish Prediction Application")
-
-st.markdown("""
-<style>
-    .main {
-        background-color: #f0f0f5;
-        font-family: Arial, sans-serif;
-    }
-    .stButton button {
+st.markdown(
+    f"""
+    <style>
+    .main {{
+        background-image: url("{restaurant_url}");
+        background-size: cover;
+    }}
+    .stButton button {{
         background-color: #4CAF50;
         color: white;
         border-radius: 12px;
-    }
-    .stHeader, .stSubheader {
+    }}
+    .stHeader, .stSubheader {{
         color: #4CAF50;
-    }
-</style>
-""", unsafe_allow_html=True)
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.image(logo_url, width=200, use_column_width=False)
+
+st.title("Dish Prediction Application")
 
 st.header("Input Parameters")
 
@@ -136,9 +145,10 @@ if st.button("Predict"):
 
     # Display results as a bar chart
     st.subheader("Prediction Bar Chart")
-    chart = alt.Chart(predictions_df).mark_bar(color='orange').encode(
-        x=alt.X('Dish', sort=None),  # מאפשר שמירה על הסדר המקורי של הדיסות
+    chart = alt.Chart(predictions_df).mark_bar().encode(
+        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=-45)),  # שינוי הזווית של התוויות בגרף
         y='Prediction',
+        color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),  # צבעים ייחודיים לכל מנה
         tooltip=['Dish', 'Prediction']
     ).properties(width=700, height=400)
     st.altair_chart(chart)
