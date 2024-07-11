@@ -14,7 +14,7 @@ import requests
 models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv('https://raw.githubusercontent.com/doringber1996/final_project/main/predictions_df.csv')  # Update with the correct path
+predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
@@ -69,8 +69,11 @@ def load_model_and_predict(dish, input_data, model_type):
         response = requests.get(model_file)
         response.raise_for_status()  # Check if the request was successful
         model = joblib.load(BytesIO(response.content))
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         st.error(f"Model file not found or error in loading: {model_file}, Error: {e}")
+        return np.array([])
+    except Exception as e:
+        st.error(f"Error in loading the model: {model_file}, Error: {e}")
         return np.array([])
 
     if model_type == 'arima':
