@@ -109,11 +109,14 @@ st.markdown(
         color: white;
         border-radius: 12px;
     }}
-    .stHeader, .stSubheader, .stMarkdown, .stText,  .sttext,.stNumberInput label, .stDateInput label, .sttitle, .stheader {{
+    .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
         color: white;
     }}
     .stTextInput, .stNumberInput input {{
         color: black;
+    }}
+    .title, .header {{
+        color: white !important;
     }}
     </style>
     """,
@@ -122,9 +125,9 @@ st.markdown(
 
 st.image(logo_url, width=200, use_column_width=False)
 
-st.title("Dish Prediction Application")
+st.title('<h1 class="title">Dish Prediction Application</h1>', unsafe_allow_html=True)
 
-st.header("Input Parameters")
+st.header('<h2 class="header">Input Parameters</h2>', unsafe_allow_html=True)
 
 # Input fields
 start_date = st.date_input("Start Date", datetime.now())
@@ -150,7 +153,7 @@ if st.button("Predict"):
     # Display results as a bar chart
     st.subheader("Prediction Bar Chart")
     chart = alt.Chart(predictions_df).mark_bar().encode(
-        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=-5)),  # שינוי הזווית של התוויות בגרף ל-X מעלות
+        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=-30)),  # שינוי הזווית של התוויות בגרף ל-30 מעלות
         y='Prediction',
         color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),  # צבעים ייחודיים לכל מנה
         tooltip=['Dish', 'Prediction']
