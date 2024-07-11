@@ -115,8 +115,11 @@ st.markdown(
     .stTextInput, .stNumberInput input {{
         color: black;
     }}
-    .title, .header {{
-        color: white !important;
+    .css-10trblm {{
+        color: white;
+    }}
+    .css-1v3fvcr p {{
+        color: white;
     }}
     </style>
     """,
@@ -125,9 +128,9 @@ st.markdown(
 
 st.image(logo_url, width=200, use_column_width=False)
 
-st.title('<h1 class="title">Dish Prediction Application</h1>', unsafe_allow_html=True)
+st.title("Dish Prediction Application")
 
-st.header('<h2 class="header">Input Parameters</h2>', unsafe_allow_html=True)
+st.header("Input Parameters")
 
 # Input fields
 start_date = st.date_input("Start Date", datetime.now())
