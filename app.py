@@ -14,7 +14,7 @@ import requests
 models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv('data/predictions_df.csv')  # Update with the correct path
+predictions_df = pd.read_csv('https://raw.githubusercontent.com/doringber1996/final_project/main/predictions_df.csv')  # Update with the correct path
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
