@@ -106,7 +106,7 @@ st.markdown(
         color: white;
     }}
     .stButton button {{
-        background-color: #4CAF50;
+        background-color: rgba(255, 255, 255, 0.8);
         color: white;
         border-radius: 12px;
     }}
@@ -156,14 +156,16 @@ if st.button("Predict"):
     st.text(results_text)
 
     # Display results as a table
-    st.subheader("Prediction Results")
+    st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
     predictions_df = pd.DataFrame(predictions_data)
-    st.table(predictions_df)
+    st.table(predictions_df, unsafe_allow_html=True)
+ 
+
 
     # Display results as a bar chart
     st.subheader("Prediction Bar Chart")
     chart = alt.Chart(predictions_df).mark_bar().encode(
-        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=-30)),  # שינוי הזווית של התוויות בגרף ל-30 מעלות
+        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=0)), 
         y='Prediction',
         color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),  # צבעים ייחודיים לכל מנה
         tooltip=['Dish', 'Prediction']
