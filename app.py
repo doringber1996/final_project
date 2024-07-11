@@ -110,7 +110,7 @@ st.markdown(
         border-radius: 12px;
     }}
     .stHeader, .stSubheader {{
-        color: white;
+        color: black;
     }}
     .stTextInput, .stNumberInput {{
         color: black;
@@ -150,7 +150,7 @@ if st.button("Predict"):
     # Display results as a bar chart
     st.subheader("Prediction Bar Chart")
     chart = alt.Chart(predictions_df).mark_bar().encode(
-        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=15)),  # שינוי הזווית של התוויות בגרף ל-30 מעלות
+        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=-5)),  # שינוי הזווית של התוויות בגרף ל-X מעלות
         y='Prediction',
         color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),  # צבעים ייחודיים לכל מנה
         tooltip=['Dish', 'Prediction']
