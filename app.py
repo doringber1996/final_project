@@ -97,11 +97,12 @@ def load_model_and_predict(dish, input_data, model_type):
 
 # Streamlit GUI
 st.markdown(
-    f"""
+       f"""
     <style>
     .main {{
         background-image: url("{restaurant_url}");
         background-size: cover;
+        color: white;
     }}
     .stButton button {{
         background-color: #4CAF50;
@@ -109,7 +110,10 @@ st.markdown(
         border-radius: 12px;
     }}
     .stHeader, .stSubheader {{
-        color: #4CAF50;
+        color: white;
+    }}
+    .stTextInput, .stNumberInput {{
+        color: black;
     }}
     </style>
     """,
