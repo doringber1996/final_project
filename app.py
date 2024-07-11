@@ -9,6 +9,8 @@ import altair as alt
 from urllib.parse import quote
 from io import BytesIO
 import requests
+import statsmodels.api as sm
+import xgboost
 
 # Path to the folder containing the models
 models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
