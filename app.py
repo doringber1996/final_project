@@ -120,14 +120,14 @@ st.markdown(
         color: white;
         border-radius: 12px;
     }}
-    .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
-        color: white;
+    .stTitle, .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
+        color: white !important;
     }}
     .stTextInput, .stNumberInput input {{
         color: black;
     }}
     .css-10trblm, .css-1v3fvcr p {{
-        color: white;
+        color: white !important;
     }}
     </style>
     """,
