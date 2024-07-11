@@ -109,7 +109,7 @@ st.markdown(
         color: white;
         border-radius: 12px;
     }}
-    .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label {{
+    .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
         color: white;
     }}
     .stTextInput, .stNumberInput input {{
