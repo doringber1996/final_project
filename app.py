@@ -15,10 +15,10 @@ from sklearn.preprocessing import MinMaxScaler
 import altair as alt
 
 # Path to the folder containing the models
-models_path = '/content/'  # Updated to local path
+models_path = 'https://github.com/doringber1996/final_project/blob/main'
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv('/content/drive/MyDrive/פרויקט גמר /data/predictions_df.csv')  # Update with the correct path
+predictions_df = pd.read_csv('https://github.com/doringber1996/final_project/blob/main/predictions_df.csv')  # Update with the correct path
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
