@@ -105,11 +105,16 @@ st.markdown(
         z-index: 1;
         color: white;
     }}
- .stDownloadButton button {{
-        background-color: rgba(255, 255, 255, 0.8);
-        color: black;
-        border-radius: 12px;
-    }}
+    .stDownloadButton button {{
+            background-color: rgba(255, 255, 255, 0.8);
+            color: black;
+            border-radius: 12px;
+        }}
+    .stTable table {{
+                background-color: rgba(255, 255, 255, 0.8);
+                color: black;
+                border-radius: 12px;
+        }}
     .stButton button {{
         background-color: rgba(255, 255, 255, 0.8);
         color: black;
