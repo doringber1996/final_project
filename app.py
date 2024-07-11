@@ -7,6 +7,8 @@ import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import altair as alt
 from urllib.parse import quote
+from io import BytesIO
+import requests
 
 # Path to the folder containing the models
 models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
