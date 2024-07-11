@@ -92,7 +92,21 @@ def load_model_and_predict(dish, input_data, model_type):
     return predictions
 
 # Streamlit GUI
-st.title("Dish Prediction")
+st.title("Dish Prediction Application")
+
+st.markdown("""
+<style>
+    .main {
+        background-color: #f0f0f5;
+        font-family: Arial, sans-serif;
+    }
+    .stButton button {
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 12px;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 st.header("Input Parameters")
 
@@ -119,7 +133,7 @@ if st.button("Predict"):
 
     # Display results as a bar chart
     st.subheader("Prediction Bar Chart")
-    chart = alt.Chart(predictions_df).mark_bar().encode(
+    chart = alt.Chart(predictions_df).mark_bar(color='steelblue').encode(
         x='Dish',
         y='Prediction',
         tooltip=['Dish', 'Prediction']
