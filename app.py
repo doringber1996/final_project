@@ -11,7 +11,7 @@ import altair as alt
 models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv('models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/predictions_df.csv')  
+predictions_df = pd.read_csv('https://raw.githubusercontent.com/doringber1996/final_project/main/predictions_df.csv')  
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
