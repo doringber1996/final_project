@@ -1,4 +1,5 @@
 import os
+import requests
 import joblib
 import pandas as pd
 import numpy as np
@@ -6,9 +7,61 @@ from datetime import datetime, timedelta
 import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import altair as alt
+from urllib.parse import quote
 
-# Path to the folder containing the models and data
+# Function to download files from GitHub
+def download_file_from_github(url, local_path):
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(local_path, 'wb') as f:
+            f.write(response.content)
+        st.write(f"Downloaded {url} to {local_path}")
+    else:
+        st.error(f"Failed to download {url}")
+
+# List of files to download
+files_to_download = [
+    'predictions_df.csv',
+    'best_en_model_Carciofi Alla Giodia.pkl',
+    "best_rf_model_חציל פרמז'ן.pkl",
+    'best_en_model_טליאטה די מנזו.pkl',
+    'best_en_model_כבדי עוף ובצל מטוגן.pkl',
+    'best_rf_model_לברק שלם.pkl',
+    'best_rf_model_לזניה בולונז.pkl',
+    'best_en_model_לינגוויני ארביאטה.pkl',
+    'best_rf_model_לינגוויני ירקות.pkl',
+    'best_hw_model_מאצי 4 גבינות.pkl',
+    'best_en_model_מאצי רוזה אפונה ובייקון.pkl',
+    'best_en_model_מבחר פטריות.pkl',
+    'best_en_model_סלט חסה גדול.pkl',
+    'best_rf_model_סלט קולורבי.pkl',
+    'best_rf_model_סלט קיסר.pkl',
+    'best_arima_model_עוגת גבינה.pkl',
+    'best_rf_model_פוקצ\'ת הבית.pkl',
+    'best_en_model_פטוצ\'יני תרד גורגונזולה.pkl',
+    'best_rf_model_פנה קרבונרה.pkl',
+    'best_xgb_model_פסטה בולונז.pkl',
+    'best_en_model_פפרדלה פטריות ושמנת.pkl',
+    "best_en_model_קרפצ'יו בקר אורוגולה ופרמז'ן.pkl",
+    "best_en_model_שרימפס אליו פפרונצ'ינו.pkl",
+    'best_en_model_טורטלוני.pkl',
+    'best_xgb_model_פילה דג.pkl',
+    'best_rf_model_פסטה פירות ים.pkl'
+]
+
+# GitHub base URL
+github_base_url = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
+
+# Local path to save the files
 local_path = '/content/'
+
+# Ensure the local path exists
+os.makedirs(local_path, exist_ok=True)
+
+# Download files
+for file in files_to_download:
+    encoded_file = quote(file)
+    download_file_from_github(github_base_url + encoded_file, os.path.join(local_path, file))
 
 # Load the dataset containing model information
 predictions_df = pd.read_csv(os.path.join(local_path, 'predictions_df.csv'))
