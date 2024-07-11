@@ -1,10 +1,3 @@
-pip install tkcalendar
-pip install streamlit
-pip install PyDrive
-pip install pyngrok
-pip install Flask-Uploads
-pip install Flask-Uploads pyngrok streamlit
-
 import os
 import joblib
 import pandas as pd
