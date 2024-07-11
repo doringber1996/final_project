@@ -160,13 +160,14 @@ if st.button("Predict"):
     for dish, prediction in results.items():
         results_text += f"{dish}: {prediction.sum()}\n"
         predictions_data.append({"Dish": dish, "Prediction": prediction.sum()})
-
-    st.text(results_text)
+        
+    st.markdown("\:pasta:")
+    st.markdown(results_text)
 
     # Display results as a table
     st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
     predictions_df = pd.DataFrame(predictions_data)
-    st.dataframe(predictions_df,use_container_width= True,height= 20*predictions_df.shape[0])
+    st.dataframe(predictions_df,use_container_width= True,height= 40*predictions_df.shape[0])
  
 
 
