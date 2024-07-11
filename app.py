@@ -100,8 +100,8 @@ st.markdown(
     f"""
     <style>
     .main {{
-        background-image: url("{restaurant_url}");
-        background-size: cover;
+        background-color: #f7f7f7;
+        color: black;
     }}
     .stButton button {{
         background-color: #4CAF50;
@@ -110,6 +110,9 @@ st.markdown(
     }}
     .stHeader, .stSubheader {{
         color: #4CAF50;
+    }}
+    .stTextInput, .stNumberInput {{
+        color: black;
     }}
     </style>
     """,
@@ -146,7 +149,7 @@ if st.button("Predict"):
     # Display results as a bar chart
     st.subheader("Prediction Bar Chart")
     chart = alt.Chart(predictions_df).mark_bar().encode(
-        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=-45)),  # שינוי הזווית של התוויות בגרף
+        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=-30)),  # שינוי הזווית של התוויות בגרף ל-30 מעלות
         y='Prediction',
         color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),  # צבעים ייחודיים לכל מנה
         tooltip=['Dish', 'Prediction']
