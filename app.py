@@ -95,14 +95,25 @@ def load_model_and_predict(dish, input_data, model_type):
 
     return predictions
 
-# Streamlit GUI
 st.markdown(
     f"""
     <style>
     .main {{
         background-image: url("{restaurant_url}");
         background-size: cover;
+        position: relative;
+        z-index: 1;
         color: white;
+    }}
+    .main:before {{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* שכבה כהה שקופה */
+        z-index: -1;
     }}
     .stButton button {{
         background-color: #4CAF50;
@@ -115,17 +126,13 @@ st.markdown(
     .stTextInput, .stNumberInput input {{
         color: black;
     }}
-    .css-10trblm {{
-        color: white;
-    }}
-    .css-1v3fvcr p {{
+    .css-10trblm, .css-1v3fvcr p {{
         color: white;
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
-
 st.image(logo_url, width=200, use_column_width=False)
 
 st.title("Dish Prediction Application")
