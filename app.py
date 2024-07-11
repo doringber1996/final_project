@@ -7,11 +7,11 @@ import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import altair as alt
 
-# Path to the folder containing the models
-models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
+# Path to the folder containing the models and data
+local_path = '/content/'
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
+predictions_df = pd.read_csv(os.path.join(local_path, 'predictions_df.csv'))
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
@@ -58,12 +58,14 @@ def load_model_and_predict(dish, input_data, model_type):
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
-    model_file = f'{models_path}best_{model_type}_model_{dish}.pkl'
-    try:
-        model = joblib.load(model_file)
-    except:
-        st.error(f"Model file not found or error in loading: {model_file}")
+    model_file = os.path.join(local_path, f'best_{model_type}_model_{dish}.pkl')
+    
+    # Check if the model file exists locally
+    if not os.path.isfile(model_file):
+        st.error(f"Model file not found: {model_file}")
         return np.array([])
+
+    model = joblib.load(model_file)
 
     if model_type == 'arima':
         predictions = model.forecast(steps=len(input_data))
