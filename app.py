@@ -6,17 +6,12 @@ from datetime import datetime, timedelta
 import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import altair as alt
-from urllib.parse import quote
-from io import BytesIO
-import requests
-import statsmodels.api as sm
-import xgboost
 
 # Path to the folder containing the models
 models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
+predictions_df = pd.read_csv('models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/predictions_df.csv')  
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
@@ -63,25 +58,28 @@ def load_model_and_predict(dish, input_data, model_type):
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
-    model_file = f'{models_path}best_{model_type}_model_{quote(dish)}.pkl'
-    
-    # Download the model file from the given URL
-    try:
-        response = requests.get(model_file)
-        response.raise_for_status()  # Check if the request was successful
-        model = joblib.load(BytesIO(response.content))
-    except Exception as e:
-        st.error(f"Model file not found or error in loading: {model_file}, Error: {e}")
+    model_file = os.path.join(models_path, f'best_{model_type}_model_{dish}.pkl')
+    if not os.path.isfile(model_file):
+        st.error(f"Model file not found: {model_file}")
         return np.array([])
+
+    model = joblib.load(model_file)
 
     if model_type == 'arima':
         predictions = model.forecast(steps=len(input_data))
     elif model_type in ['holt-winters', 'hw']:
         predictions = model.forecast(steps=len(input_data))
-    else:
+    elif model_type in ['elastic net', 'en']:
         features = input_data[['יום בשבוע', 'חודש', 'מספר לקוחות מנורמל']]
         predictions = model.predict(features)
-
+    elif model_type in ['xgboost', 'xgb']:
+        features = input_data[['יום בשבוע', 'חודש', 'מספר לקוחות מנורמל']]
+        predictions = model.predict(features)
+    elif model_type in ['random forest', 'rf']:
+        features = input_data[['יום בשבוע', 'חודש', 'מספר לקוחות מנורמל']]
+        predictions = model.predict(features)
+    else:
+        raise ValueError(f"Unknown model type: {model_type}")
     # המרה למספרים שלמים בעזרת np.ceil
     predictions = np.ceil(predictions).astype(int)
 
