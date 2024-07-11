@@ -106,8 +106,8 @@ st.markdown(
         color: white;
     }}
     .stButton button {{
-        background-color: rgba(255, 255, 255, 0.8);
-        color: black;
+        background-color: #4CAF50;
+        color: white;
         border-radius: 12px;
     }}
     .stTextInput, .stNumberInput input {{
@@ -130,6 +130,11 @@ st.markdown(
     }}
     .stTitle, .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
         color: white !important;
+    }}
+    .download-button button {{
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 12px;
     }}
     </style>
     """,
@@ -159,19 +164,16 @@ if st.button("Predict"):
     st.text(results_text)
 
     # Display results as a table
-    st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
+    st.markdown('<h2 class="title">Prediction Results</h2>', unsafe_allow_html=True)
     predictions_df = pd.DataFrame(predictions_data)
     st.table(predictions_df)
- 
-
 
     # Display results as a bar chart
     st.markdown('<h2 class="title">Prediction Bar Chart</h2>', unsafe_allow_html=True)
-
     chart = alt.Chart(predictions_df).mark_bar().encode(
-        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=0)), 
+        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=0)),
         y='Prediction',
-        color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),  # צבעים ייחודיים לכל מנה
+        color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),
         tooltip=['Dish', 'Prediction']
     ).properties(width=700, height=400)
     st.altair_chart(chart)
@@ -179,4 +181,4 @@ if st.button("Predict"):
     # Provide option to download results
     st.markdown('<h2 class="title">Download Results</h2>', unsafe_allow_html=True)
     csv = predictions_df.to_csv(index=False)
-    st.download_button(label="Download CSV", data=csv, file_name='predictions.csv', mime='text/csv')
+    st.download_button(label="Download CSV", data=csv, file_name='predictions.csv', mime='text/csv', key='download-csv')
