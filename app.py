@@ -105,14 +105,14 @@ st.markdown(
         color: white;
     }}
     .stButton button {{
-        background-color: white;
-        color: black;
+        background-color: #4CAF50;
+        color: white;
         border-radius: 12px;
     }}
-    .stHeader, .stSubheader {{
-        color: black;
+    .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label {{
+        color: white;
     }}
-    .stTextInput, .stNumberInput {{
+    .stTextInput, .stNumberInput input {{
         color: black;
     }}
     </style>
