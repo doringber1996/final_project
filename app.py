@@ -166,7 +166,7 @@ if st.button("Predict"):
     # Display results as a table
     st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
     predictions_df = pd.DataFrame(predictions_data)
-    st.dataframe(predictions_df,use_container_width= True)
+    st.dataframe(predictions_df,use_container_width= True,height= 20)
  
 
 
