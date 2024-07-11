@@ -105,30 +105,39 @@ st.markdown(
         z-index: 1;
         color: white;
     }}
-
     .stButton button {{
-        background-color: #6a6b6b;
+        background-color: #4CAF50;
         color: white;
         border-radius: 12px;
-    }}
-    .sttitle, .stheader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
-        color: white !important;
     }}
     .stTextInput, .stNumberInput input {{
         color: black;
     }}
-    .css-10trblm, .css-1v3fvcr p {{
+    .css-1v3fvcr p {{
         color: white !important;
+    }}
+    .title {{
+        background-color: rgba(255, 255, 255, 0.8); /* רקע בהיר */
+        color: black !important;
+        padding: 10px;
+        border-radius: 10px;
+    }}
+    .header {{
+        background-color: rgba(255, 255, 255, 0.8); /* רקע בהיר */
+        color: black !important;
+        padding: 5px;
+        border-radius: 5px;
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
+
 st.image(logo_url, width=200, use_column_width=False)
 
-st.title("Dish Prediction Application")
+st.markdown('<h1 class="title">Dish Prediction Application</h1>', unsafe_allow_html=True)
 
-st.header("Input Parameters")
+st.markdown('<h2 class="header">Input Parameters</h2>', unsafe_allow_html=True)
 
 # Input fields
 start_date = st.date_input("Start Date", datetime.now())
