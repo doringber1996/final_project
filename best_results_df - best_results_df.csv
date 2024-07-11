@@ -1,0 +1,30 @@
+Dish,Best Model,Best RMSE
+Carciofi Alla Giodia,Elastic Net,3.556764595
+חציל פרמז'ן,XGBoost,4.675047997
+טירמיסו,Random Forest,7.540397505
+טליאטה די מנזו,Elastic Net,3.226139389
+כבדי עוף ובצל מטוגן,Random Forest,3.125752215
+לברק שלם,Elastic Net,1.971282799
+לזניה בולונז,Random Forest,5.360904511
+לינגוויני ארביאטה,Elastic Net,3.664550691
+לינגוויני ירקות,Random Forest,2.984954642
+מאצי 4 גבינות,Holt-Winters,3.935383447
+מאצי רוזה אפונה ובייקון,Elastic Net,3.539138886
+מבחר פטריות,Elastic Net,4.843651897
+נמסיס,Random Forest,3.8702639
+סלט חסה גדול,Elastic Net,4.138451472
+סלט קולורבי,Random Forest,3.700620228
+סלט קיסר,Random Forest,4.521380087
+עוגת גבינה,ARIMA,3.033772562
+פוקצ'ת הבית,Random Forest,11.15790961
+פטוצ'יני תרד גורגונזולה,Elastic Net,7.104531269
+פנה קרבונרה,Random Forest,5.344976664
+פסטה בולונז,XGBoost,5.709768211
+פפרדלה פטריות ושמנת,Elastic Net,5.474678008
+פרגיות,Random Forest,3.117407012
+קרפצ'יו בקר אורוגולה ופרמז'ן,Elastic Net,4.946925572
+שרימפס אליו פפרונצ'ינו,Elastic Net,3.69252527
+טורטלוני,Random Forest,5.887990786
+פילה דג,XGBoost,5.173701707
+פסטה פירות ים,Random Forest,2.920349554
+ריזוטו,ARIMA,3.950137282
