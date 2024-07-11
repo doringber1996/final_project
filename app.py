@@ -169,7 +169,8 @@ if st.button("Predict"):
 
 
     # Display results as a bar chart
-    st.subheader("Prediction Bar Chart")
+    st.markdown('<h2 class="title">Prediction Bar Chart</h2>', unsafe_allow_html=True)
+
     chart = alt.Chart(predictions_df).mark_bar().encode(
         x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=0)), 
         y='Prediction',
