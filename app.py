@@ -105,6 +105,9 @@ st.markdown("""
         color: white;
         border-radius: 12px;
     }
+    .stHeader, .stSubheader {
+        color: #4CAF50;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -133,8 +136,8 @@ if st.button("Predict"):
 
     # Display results as a bar chart
     st.subheader("Prediction Bar Chart")
-    chart = alt.Chart(predictions_df).mark_bar(color='steelblue').encode(
-        x='Dish',
+    chart = alt.Chart(predictions_df).mark_bar(color='orange').encode(
+        x=alt.X('Dish', sort=None),  # מאפשר שמירה על הסדר המקורי של הדיסות
         y='Prediction',
         tooltip=['Dish', 'Prediction']
     ).properties(width=700, height=400)
