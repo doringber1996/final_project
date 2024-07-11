@@ -120,7 +120,7 @@ st.markdown(
         color: white;
         border-radius: 12px;
     }}
-    .stTitle, .stHeader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
+    .sttitle, .stheader, .stSubheader, .stMarkdown, .stText, .stNumberInput label, .stDateInput label {{
         color: white !important;
     }}
     .stTextInput, .stNumberInput input {{
@@ -135,9 +135,9 @@ st.markdown(
 )
 st.image(logo_url, width=200, use_column_width=False)
 
-st.Title("Dish Prediction Application")
+st.title("Dish Prediction Application")
 
-st.Header("Input Parameters")
+st.header("Input Parameters")
 
 # Input fields
 start_date = st.date_input("Start Date", datetime.now())
