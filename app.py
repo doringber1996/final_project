@@ -100,7 +100,7 @@ st.markdown(
     f"""
     <style>
     .main {{
-        background-image: url("{restaurant_url}");
+        background-image: url("{cafe-italia_url}");
         background-size: cover;
     }}
     .stButton button {{
