@@ -105,8 +105,18 @@ st.markdown(
         z-index: 1;
         color: white;
     }}
+    .main:before {{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* שכבה כהה שקופה */
+        z-index: -1;
+    }}
     .stButton button {{
-        background-color: black,
+        background-color: #4CAF50;
         color: white;
         border-radius: 12px;
     }}
@@ -116,7 +126,7 @@ st.markdown(
     .stTextInput, .stNumberInput input {{
         color: black;
     }}
-    .st-emotion-cache-asc41u e1nzilvr2{{
+    .css-10trblm, .css-1v3fvcr p {{
         color: white !important;
     }}
     </style>
@@ -125,9 +135,9 @@ st.markdown(
 )
 st.image(logo_url, width=200, use_column_width=False)
 
-st.title("Dish Prediction Application")
+st.Title("Dish Prediction Application")
 
-st.header("Input Parameters")
+st.Header("Input Parameters")
 
 # Input fields
 start_date = st.date_input("Start Date", datetime.now())
