@@ -105,18 +105,7 @@ st.markdown(
         z-index: 1;
         color: white;
     }}
-    .main:before {{
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* שכבה כהה שקופה */
-        z-index: -1;
-    }}
     .stButton button {{
-        background-color: #4CAF50;
         color: white;
         border-radius: 12px;
     }}
@@ -126,7 +115,7 @@ st.markdown(
     .stTextInput, .stNumberInput input {{
         color: black;
     }}
-    .css-10trblm, .css-1v3fvcr p {{
+    .st-emotion-cache-asc41u e1nzilvr2{{
         color: white !important;
     }}
     </style>
