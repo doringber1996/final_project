@@ -110,16 +110,8 @@ st.markdown(
         color: black;
         border-radius: 12px;
     }}
-    .stButton download_button {{
-        background-color: rgba(255, 255, 255, 0.8);
-        color: black;
-        border-radius: 12px;
-    }}
     .stTextInput, .stNumberInput input {{
         color: black;
-    }}
-    .css-1v3fvcr p {{
-        color: white !important;
     }}
     .title {{
         background-color: rgba(255, 255, 255, 0.8); /* רקע בהיר */
