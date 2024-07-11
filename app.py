@@ -110,10 +110,6 @@ st.markdown(
             color: black;
             border-radius: 12px;
         }}
-    .stTable table {{
-                background-color: rgba(255, 255, 255, 0.8);
-                color: black;
-        }}
     .stButton button {{
         background-color: rgba(255, 255, 255, 0.8);
         color: black;
@@ -170,7 +166,7 @@ if st.button("Predict"):
     # Display results as a table
     st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
     predictions_df = pd.DataFrame(predictions_data)
-    st.table(predictions_df)
+    st.dataframe(predictions_df)
  
 
 
