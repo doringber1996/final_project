@@ -113,7 +113,6 @@ st.markdown(
     .stTable table {{
                 background-color: rgba(255, 255, 255, 0.8);
                 color: black;
-                border-radius: 12px;
         }}
     .stButton button {{
         background-color: rgba(255, 255, 255, 0.8);
