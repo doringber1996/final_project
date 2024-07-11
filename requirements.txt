@@ -1,8 +1,7 @@
-streamlit
+streamlit == 1.36.0
 pandas == 2.0.3
-numpy
-scikit-learn
-joblib
-altair
-requests
+numpy == 1.25.2
+joblib == 3.0.0
+altair == 4.2.2
+requests == 2.31.0
 scikit-learn == 1.2.2
