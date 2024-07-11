@@ -23,14 +23,14 @@ dish_columns = predictions_df['Dish'].unique()
 def preprocess_input(start_date, end_date, num_customers):
     dates = pd.date_range(start=start_date, end=end_date, freq='D')
     data = pd.DataFrame({'Date': dates})
-    data['יום בשבוע'] = data['Date'].dt.dayofweek + 1
-    data['חודש'] = data['Date'].dt.month
+    data.set_index('Date', inplace=True)  # הגדרת אינדקס התאריכים
+    data['יום בשבוע'] = data.index.dayofweek + 1
+    data['חודש'] = data.index.month
     data['מספר לקוחות מנורמל'] = num_customers
     # יצירת אובייקט MinMaxScaler
     scaler = MinMaxScaler()
     # החלת MinMaxScaler על עמודת 'מספר לקוחות מנורמל'
     data['מספר לקוחות מנורמל'] = scaler.fit_transform(data[['מספר לקוחות מנורמל']])
-
     return data
 
 # Prediction function
@@ -61,7 +61,9 @@ def load_model_and_predict(dish, input_data, model_type):
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
-    encoded_dish = quote(dish)
+    # החלפת התו ' בתו _ בשם הקובץ
+    sanitized_dish = dish.replace("'", "_")
+    encoded_dish = quote(sanitized_dish)
     model_file = f'{models_path}best_{model_type}_model_{encoded_dish}.pkl'
     
     # Download the model file from the given URL
