@@ -8,6 +8,10 @@ import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import altair as alt
 from urllib.parse import quote
+import tempfile
+
+# Create a temporary directory
+temp_dir = tempfile.mkdtemp()
 
 # Function to download files from GitHub
 def download_file_from_github(url, local_path):
@@ -52,19 +56,13 @@ files_to_download = [
 # GitHub base URL
 github_base_url = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
 
-# Local path to save the files
-local_path = '/content/'
-
-# Ensure the local path exists
-os.makedirs(local_path, exist_ok=True)
-
-# Download files
+# Download files to the temporary directory
 for file in files_to_download:
     encoded_file = quote(file)
-    download_file_from_github(github_base_url + encoded_file, os.path.join(local_path, file))
+    download_file_from_github(github_base_url + encoded_file, os.path.join(temp_dir, file))
 
 # Load the dataset containing model information
-predictions_df = pd.read_csv(os.path.join(local_path, 'predictions_df.csv'))
+predictions_df = pd.read_csv(os.path.join(temp_dir, 'predictions_df.csv'))
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
@@ -111,7 +109,7 @@ def load_model_and_predict(dish, input_data, model_type):
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
-    model_file = os.path.join(local_path, f'best_{model_type}_model_{dish}.pkl')
+    model_file = os.path.join(temp_dir, f'best_{model_type}_model_{dish}.pkl')
     
     # Check if the model file exists locally
     if not os.path.isfile(model_file):
