@@ -18,7 +18,7 @@ predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
 
 # Load images from GitHub
 logo_url = f'{models_path}logo.png'
-restaurant_url = f'{models_path}restaurant.jpg'
+restaurant_url = f'{models_path}cafe-italia.jpg'
 
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
@@ -100,7 +100,7 @@ st.markdown(
     f"""
     <style>
     .main {{
-        background-image: url("{cafe-italia_url}");
+        background-image: url("{restaurant_url}");
         background-size: cover;
     }}
     .stButton button {{
