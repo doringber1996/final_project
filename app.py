@@ -1,18 +1,18 @@
-!pip install tkcalendar
-!pip install streamlit
-!pip install PyDrive
-!pip install pyngrok
-!pip install Flask-Uploads
-!pip install Flask-Uploads pyngrok streamlit
+# !pip install tkcalendar
+# !pip install streamlit
+# !pip install PyDrive
+# !pip install pyngrok
+# !pip install Flask-Uploads
+# !pip install Flask-Uploads pyngrok streamlit
 
-import os
-import joblib
-import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
-import streamlit as st
-from sklearn.preprocessing import MinMaxScaler
-import altair as alt
+# import os
+# import joblib
+# import pandas as pd
+# import numpy as np
+# from datetime import datetime, timedelta
+# import streamlit as st
+# from sklearn.preprocessing import MinMaxScaler
+# import altair as alt
 
 # Path to the folder containing the models
 models_path = 'https://github.com/doringber1996/final_project/blob/main'
