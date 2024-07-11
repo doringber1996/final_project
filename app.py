@@ -161,8 +161,8 @@ if st.button("Predict"):
         results_text += f"{dish}: {prediction.sum()}\n"
         predictions_data.append({"Dish": dish, "Prediction": prediction.sum()})
         
-    st.markdown("\:pasta:")
-    st.markdown(results_text)
+
+    st.markdown(results_text, unsafe_allow_html=True)
 
     # Display results as a table
     st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
