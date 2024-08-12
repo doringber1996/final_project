@@ -1,6 +1,6 @@
 streamlit == 1.36.0
 pandas == 2.0.3
-numpy == 1.25.2
+numpy 
 joblib 
 altair
 requests 
