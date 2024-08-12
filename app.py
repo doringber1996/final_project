@@ -20,6 +20,15 @@ predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
 logo_url = f'{models_path}logo.png'
 restaurant_url = f'{models_path}cafe-italia.jpg'
 
+# הגדרת רשימת המנות
+dish_columns = ['Carciofi Alla Giodia', "פוקצ'ת הבית", "חציל פרמז'ן", 'מבחר פטריות',
+                "שרימפס אליו פפרונצ'ינו", "קרפצ'יו בקר אורוגולה ופרמז'ן", 'סלט חסה גדול',
+                'סלט קולורבי', 'סלט קיסר', 'לינגוויני ירקות', 'לינגוויני ארביאטה',
+                'מאצי 4 גבינות', 'פפרדלה פטריות ושמנת', "פטוצ'יני תרד גורגונזולה",
+                'פסטה בולונז', 'פנה קרבונרה', 'מאצי רוזה אפונה ובייקון', 'לזניה בולונז',
+                'טורטלוני', 'ריזוטו', 'פסטה פירות ים', 'פילה דג', 'לברק שלם',
+                'כבדי עוף ובצל מטוגן', 'פרגיות', 'טליאטה די מנזו', 'עוגת גבינה', 'נמסיס', 'טירמיסו']
+                
 # Define the list of dishes
 dish_columns = predictions_df['Dish'].unique()
 
@@ -65,8 +74,11 @@ def load_model_and_predict(dish, input_data, model_type):
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
-    model_file = f'{models_path}best_{model_type}_model_{dish}.pkl'
-    
+    # החלפת התו ' בתו _ בשם הקובץ
+    sanitized_dish = dish.replace("'", "_")
+    encoded_dish = quote(sanitized_dish)
+    model_file = f'{models_path}best_{model_type}_model_{encoded_dish}.pkl'
+
     # Download the model file from the given URL
     try:
         response = requests.get(model_file)
@@ -157,20 +169,20 @@ if st.button("Predict"):
     for dish, prediction in results.items():
         results_text += f"{dish}: {prediction.sum()}\n"
         predictions_data.append({"Dish": dish, "Prediction": prediction.sum()})
-        
+
 
     # Display results as a table
     st.markdown('<h1 class="title">Prediction Results</h1>', unsafe_allow_html=True)
     predictions_df = pd.DataFrame(predictions_data)
     st.dataframe(predictions_df,use_container_width= True,height= 40*predictions_df.shape[0])
- 
+
 
 
     # Display results as a bar chart
     st.markdown('<h2 class="title">Prediction Bar Chart</h2>', unsafe_allow_html=True)
 
     chart = alt.Chart(predictions_df).mark_bar().encode(
-        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=0)), 
+        x=alt.X('Dish', sort=None, axis=alt.Axis(labelAngle=0)),
         y='Prediction',
         color=alt.Color('Dish', scale=alt.Scale(scheme='tableau20')),  # צבעים ייחודיים לכל מנה
         tooltip=['Dish', 'Prediction']
