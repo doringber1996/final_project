@@ -11,7 +11,8 @@ from io import BytesIO
 import requests
 
 # Path to the folder containing the models and images
-models_path = 'https://raw.githubusercontent.com/doringber1996/final_project/main/'
+models_path = 'https://github.com/doringber1996/final_project/raw/main/'
+
 
 # Load the dataset containing model information
 predictions_df = pd.read_csv(f'{models_path}predictions_df.csv')
