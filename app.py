@@ -65,10 +65,7 @@ def load_model_and_predict(dish, input_data, model_type):
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
-    # החלפת התו ' בתו _ בשם הקובץ
-    sanitized_dish = dish.replace("'", "_")
-    encoded_dish = quote(sanitized_dish)
-    model_file = f'{models_path}best_{model_type}_model_{encoded_dish}.pkl'
+    model_file = f'{models_path}best_{model_type}_model_{dish}.pkl'
     
     # Download the model file from the given URL
     try:
