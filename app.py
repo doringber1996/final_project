@@ -28,9 +28,12 @@ dish_columns = ['Carciofi Alla Giodia', "פוקצ'ת הבית", "חציל פרמ
                 'פסטה בולונז', 'פנה קרבונרה', 'מאצי רוזה אפונה ובייקון', 'לזניה בולונז',
                 'טורטלוני', 'ריזוטו', 'פסטה פירות ים', 'פילה דג', 'לברק שלם',
                 'כבדי עוף ובצל מטוגן', 'פרגיות', 'טליאטה די מנזו', 'עוגת גבינה', 'נמסיס', 'טירמיסו']
-                
-# Define the list of dishes
-dish_columns = predictions_df['Dish'].unique()
+
+# Replace '’' with "'" and check column names
+for i in range(0, len(dish_columns)):
+    if '’' in dish_columns[i]:
+        dish_columns[i] = dish_columns[i].replace('’', "'")
+        print('change', dish_columns[i])                
 
 # Preprocessing function
 def preprocess_input(start_date, end_date, num_customers):
@@ -75,8 +78,8 @@ def load_model_and_predict(dish, input_data, model_type):
         raise ValueError(f"Unknown model type: {model_type}")
 
     # החלפת התו ' בתו _ בשם הקובץ
-    sanitized_dish = dish.replace("'", "_")
-    encoded_dish = quote(sanitized_dish)
+#    sanitized_dish = dish.replace("'", "_")
+    encoded_dish = quote(dish)
     model_file = f'{models_path}best_{model_type}_model_{encoded_dish}.pkl'
 
     # Download the model file from the given URL
