@@ -79,7 +79,7 @@ def load_model_and_predict(dish, input_data, model_type):
         raise ValueError(f"Unknown model type: {model_type}")
 
     # החלפת התו ' בתו _ בשם הקובץ
-#    sanitized_dish = dish.replace("'", "_")
+    sanitized_dish = dish.replace("'", "_")
     encoded_dish = quote(dish)
     model_file = f'{models_path}best_{model_type}_model_{encoded_dish}.pkl'
 
